@@ -13,10 +13,13 @@ logging:
     
 spring:
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/board
     username: uno
     password: thisisTESTpw!@#$
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+#    username: root
+#    password: 1234
 #    url: jdbc:h2:mem:testdb
 #    username: sa
 #    driver-class-name: org.h2.Driver
@@ -32,4 +35,7 @@ spring:
   data.rest:
     base-path: /api
     detection-strategy: annotated
-    
+  thymeleaf3:
+    decoupled-logic: true
+server:
+  port: 10004
