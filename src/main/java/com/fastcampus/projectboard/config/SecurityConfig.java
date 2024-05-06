@@ -32,17 +32,10 @@ public class SecurityConfig {
                 )
                 .formLogin().and()
                 .logout()
-                .logoutSuccessUrl("/")
-                .and()
+                        .logoutSuccessUrl("/")
+                        .and()
                 .build();
     }
-
-    // 해당 방식을 스프링에서 추천 하지 않음 상위 http 에서 처리하도록 변경
-    // @Bean
-    // public WebSecurityCustomizer webSecurityCustomizer() {
-    //     // static, css, js 등 정적 리소스 시큐리티 제외
-    //     return (web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
-    // }
 
     @Bean
     public UserDetailsService userDetailsService(UserAccountRepository userAccountRepository) {
@@ -50,11 +43,12 @@ public class SecurityConfig {
                 .findById(username)
                 .map(UserAccountDto::from)
                 .map(BoardPrincipal::from)
-                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다 - username : " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다 - username: " + username));
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+
 }
