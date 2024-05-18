@@ -33,11 +33,11 @@ public class ArticleComment extends AuditingFields {
     
     @Setter
     @Column(updatable = false)
-    private Long prentCommentId; // 부모 댓글 ID
+    private Long parentCommentId; // 부모 댓글 ID
     
     @ToString.Exclude
     @OrderBy("createdAt ASC")
-    @OneToMany(mappedBy = "prentCommentId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parentCommentId", cascade = CascadeType.ALL)
     private Set<ArticleComment> childComments = new LinkedHashSet<>();
 
     @Setter
@@ -48,10 +48,10 @@ public class ArticleComment extends AuditingFields {
     protected ArticleComment() {
     }
 
-    private ArticleComment(Article article, UserAccount userAccount, Long prentCommentId, String content) {
+    private ArticleComment(Article article, UserAccount userAccount, Long parentCommentId, String content) {
         this.article = article;
         this.userAccount = userAccount;
-        this.prentCommentId = prentCommentId;
+        this.parentCommentId = parentCommentId;
         this.content = content;
     }
 
@@ -60,7 +60,7 @@ public class ArticleComment extends AuditingFields {
     }
     
     public void addChildComment(ArticleComment child) {
-        child.setPrentCommentId(this.getId());
+        child.setParentCommentId(this.getId());
         this.getChildComments().add(child);
     }
 
