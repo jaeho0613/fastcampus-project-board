@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @ConfigurationPropertiesScan
 @SpringBootApplication
-public class FastCampusProjectBoardApplication {
+public class FastcampusProjectBoardApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FastCampusProjectBoardApplication.class, args);
+        SpringApplication.run(FastcampusProjectBoardApplication.class, args);
     }
 
 }
